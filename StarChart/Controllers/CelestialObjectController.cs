@@ -66,9 +66,7 @@ namespace StarChart.Controllers
             _context.CelestialObjects.Add(celestialObject);
             _context.SaveChanges();
 
-            var newCeles = new CelestialObject { Id = celestialObject.Id };
-
-            return CreatedAtRoute("GetById", newCeles.Id, celestialObject);
+            return CreatedAtRoute("GetById", new { id = celestialObject.Id }, celestialObject);
         }
 
         [HttpPut("{id}")]

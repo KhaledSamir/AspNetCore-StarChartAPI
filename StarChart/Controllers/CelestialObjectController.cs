@@ -17,16 +17,15 @@ namespace StarChart.Controllers
             _context = context;
         }
 
-        [HttpGet("{id:int}",Name = "GetById")]
-        
+        [HttpGet("{id:int}", Name = "GetById")]
         public IActionResult GetById(int id)
         {
             var celestial = _context.CelestialObjects.Find(id);
 
-            celestial.Satellites = _context.CelestialObjects.Where(c => c.Name == celestial.Name).ToList();
-
             if (celestial == null)
                 return NotFound();
+
+            celestial.Satellites = _context.CelestialObjects.Where(c => c.OrbitedObjectId == celestial.Id).ToList();
 
             return Ok(celestial);
         }

@@ -17,7 +17,7 @@ namespace StarChart.Controllers
             _context = context;
         }
 
-        [HttpGet(Name = "GetById")]
+        [HttpGet("{id:int}",Name = "GetById")]
         
         public IActionResult GetById(int id)
         {
@@ -29,7 +29,7 @@ namespace StarChart.Controllers
             return Ok(celestial);
         }
 
-        [HttpGet(Name = "GetByName")]
+        [HttpGet("{name:string}", Name = "GetByName")]
 
         public IActionResult GetByName(string name)
         {
